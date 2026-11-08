@@ -2,6 +2,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.stats import ttest_rel, t
 
 # =========================================================
 # 1. Set project paths
@@ -339,26 +340,113 @@ print(f"Test RMSE: {rmse:.6f}")
 print("[PASS] Rating prediction metrics calculated")
 
 # =========================================================
-# 10. Calculate mean evaluation metrics
+# 10. Evaluate Global Mean Baseline
+# =========================================================
+
+baseline_predicted = np.full(
+    len(actual),
+    global_mean,
+    dtype=np.float64
+)
+
+baseline_errors = actual - baseline_predicted
+
+baseline_mae = float(np.mean(np.abs(baseline_errors)))
+baseline_mse = float(np.mean(baseline_errors ** 2))
+baseline_rmse = float(np.sqrt(baseline_mse))
+
+print("\n========== GLOBAL MEAN BASELINE ==========")
+print(f"Baseline MAE: {baseline_mae:.6f}")
+print(f"Baseline MSE: {baseline_mse:.6f}")
+print(f"Baseline RMSE: {baseline_rmse:.6f}")
+
+# =========================================================
+# 11. Paired t-test: Matrix Factorization vs Global Mean Baseline
+# =========================================================
+
+print("\n========== PAIRED T-TEST ==========")
+
+comparison = pd.DataFrame({
+    "user_id": holdout["user_id"].astype(str).to_numpy(),
+    "mf_abs_error": np.abs(actual - predicted),
+    "baseline_abs_error": np.abs(actual - baseline_predicted)
+})
+
+# Calculate mean absolute error for each user.
+user_errors = comparison.groupby("user_id")[
+    ["mf_abs_error", "baseline_abs_error"]
+].mean()
+
+# Positive difference means MF performs better.
+differences = (
+    user_errors["baseline_abs_error"]
+    - user_errors["mf_abs_error"]
+)
+
+n_users = len(user_errors)
+assert n_users >= 2
+
+t_stat, p_value = ttest_rel(
+    user_errors["baseline_abs_error"],
+    user_errors["mf_abs_error"]
+)
+
+mean_diff = float(differences.mean())
+std_diff = float(differences.std(ddof=1))
+
+# Calculate 95% confidence interval.
+standard_error = std_diff / np.sqrt(n_users)
+critical_value = t.ppf(0.975, df=n_users - 1)
+
+ci_lower = mean_diff - critical_value * standard_error
+ci_upper = mean_diff + critical_value * standard_error
+
+print("Paired users:", n_users)
+print(f"Mean MAE difference: {mean_diff:.6f}")
+print(f"t-statistic: {t_stat:.6f}")
+print(f"p-value: {p_value:.6g}")
+print(f"95% CI: [{ci_lower:.6f}, {ci_upper:.6f}]")
+
+if p_value < 0.05:
+    print("Statistically significant difference (p < 0.05)")
+else:
+    print("No statistically significant difference (p >= 0.05)")
+
+# =========================================================
+# 12. Calculate evaluation metrics
 # =========================================================
 
 mean_metrics = user_metrics[metric_columns].mean()
 
-evaluation_results = pd.DataFrame([{
-    "model": "MF_SGD_FoldIn",
-    "n_evaluable_users": len(evaluable_users),
-    "n_test_interactions": len(holdout),
-    "mae": mae,
-    "mse": mse,
-    "rmse": rmse,
-    "recall@5": float(mean_metrics["recall@5"]),
-    "recall@10": float(mean_metrics["recall@10"]),
-    "ndcg@5": float(mean_metrics["ndcg@5"]),
-    "ndcg@10": float(mean_metrics["ndcg@10"])
-}])
+evaluation_results = pd.DataFrame([
+    {
+        "model": "GlobalMean_Baseline",
+        "n_evaluable_users": np.nan,
+        "n_test_interactions": len(holdout),
+        "mae": baseline_mae,
+        "mse": baseline_mse,
+        "rmse": baseline_rmse,
+        "recall@5": np.nan,
+        "recall@10": np.nan,
+        "ndcg@5": np.nan,
+        "ndcg@10": np.nan
+    },
+    {
+        "model": "MF_SGD_FoldIn",
+        "n_evaluable_users": len(evaluable_users),
+        "n_test_interactions": len(holdout),
+        "mae": mae,
+        "mse": mse,
+        "rmse": rmse,
+        "recall@5": float(mean_metrics["recall@5"]),
+        "recall@10": float(mean_metrics["recall@10"]),
+        "ndcg@5": float(mean_metrics["ndcg@5"]),
+        "ndcg@10": float(mean_metrics["ndcg@10"])
+    }
+])
 
 # =========================================================
-# 11. Save evaluation results
+# 13. Save evaluation results
 # =========================================================
 
 evaluation_results.to_csv(
@@ -371,11 +459,28 @@ user_metrics.to_parquet(
     index=False
 )
 
+ttest_results = pd.DataFrame([{
+    "comparison": "GlobalMean_vs_MF",
+    "metric": "user_level_mae",
+    "n_users": n_users,
+    "mean_difference": mean_diff,
+    "t_statistic": t_stat,
+    "p_value": p_value,
+    "ci_lower": ci_lower,
+    "ci_upper": ci_upper
+}])
+
+ttest_results.to_csv(
+    OUTPUT_DIR / "paired_t_test_results.csv",
+    index=False
+)
+
 print("[PASS] Evaluation results saved")
 print("[PASS] User-level metrics saved")
+print("[PASS] Paired t-test results saved")
 
 # =========================================================
-# 12. Display final results
+# 14. Display final results
 # =========================================================
 
 print("\n========== FINAL MF EVALUATION ==========")

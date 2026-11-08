@@ -1,0 +1,2 @@
+comparison,metric,n_users,mean_difference,t_statistic,p_value,ci_lower,ci_upper
+GlobalMean_vs_MF,user_level_mae,4101,0.4309527843838806,68.07079383005488,0.0,0.41854068645277653,0.4433648823149847
