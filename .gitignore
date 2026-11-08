@@ -6,9 +6,18 @@ venv/
 .env
 
 # Datasets
-data/raw/*
-data/processed/*
-data/final_data/*
+# Ignore data files, but keep directory structure
+data/final_data/**
+!data/final_data/**/
+!data/final_data/**/.gitkeep
+
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+
+data/processed/**
+!data/processed/**/
+!data/processed/**/.gitkeep
 
 # Model outputs and results
 
@@ -21,7 +30,4 @@ Thumbs.db
 .vscode/
 
 # Keep folder structure
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/final_data/.gitkeep
 !results/.gitkeep
