@@ -1,0 +1,13 @@
+{
+    "dataset": "BeerAdvocate",
+    "n_users": 14591,
+    "n_items": 2095,
+    "n_interactions": 140665,
+    "n_factors": 20,
+    "learning_rate": 0.01,
+    "reg": 0.05,
+    "n_epochs": 26,
+    "random_state": 42,
+    "global_mean": 3.722910224054787,
+    "final_train_rmse": 0.529984541455692
+}

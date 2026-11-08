@@ -11,8 +11,6 @@ data/processed/*
 data/final_data/*
 
 # Model outputs and results
-results/*
-experiments/
 
 # Jupyter
 .ipynb_checkpoints/

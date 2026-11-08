@@ -1,0 +1,2 @@
+best_epoch,best_validation_rmse,final_train_rmse,final_validation_rmse,train_interactions,validation_interactions,moved_cold_start_interactions
+20,0.6226404086381994,0.5513614649215915,0.6226404086381994,113988,26677,1456

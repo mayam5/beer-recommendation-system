@@ -1,0 +1,8 @@
+{
+    "n_factors": 20,
+    "learning_rate": 0.01,
+    "reg": 0.05,
+    "n_epochs": 26,
+    "random_state": 42,
+    "validation_rmse": 0.6213708662239604
+}

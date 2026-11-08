@@ -1,0 +1,11 @@
+{
+    "source_model": "BeerAdvocate MF",
+    "target_dataset": "RateBeer",
+    "method": "Ridge Regression Fold-in",
+    "n_users": 4101,
+    "n_items": 2095,
+    "n_factors": 20,
+    "factor_reg": 1.0,
+    "bias_reg": 1.0,
+    "input_interactions": 150532
+}

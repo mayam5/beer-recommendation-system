@@ -633,6 +633,8 @@ if warnings:
 if not errors:
     print("\nRESULT: CORE DATA VALIDATION PASSED")
     print("Files are structurally ready for model development.")
+    print("\nStep 24 Completed.")
+    print("\nData Preprocessing Completed.")
 else:
     print("\nRESULT: VALIDATION FAILED")
     print("Resolve errors before sharing the data.")
