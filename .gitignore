@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Datasets
+data/raw/*
+data/processed/*
+data/final_data/*
+
+# Model outputs and results
+results/*
+experiments/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/final_data/.gitkeep
+!results/.gitkeep
