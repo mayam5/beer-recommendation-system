@@ -1,39 +1,39 @@
 """
-Content-based Filtering 맥주 추천
+Content-based Filtering for Beer Recommendation
 
-학습(맥주 특징): BeerAdvocate 리뷰 텍스트
-테스트: RateBeer 사용자 평점 (입력 70% / 정답 30%)
+Training (beer features): BeerAdvocate review text
+Test: RateBeer user ratings (input 70% / holdout 30%)
 
-코드 구성 (실행 화면의 [1]~[8]과 같은 순서)
-[1] 데이터 불러오기, 공통 맥주 리뷰 정리
-[2] 맥주별 TF-IDF 벡터 생성
-[3] 맥주 간 코사인 유사도 계산
-[4] 테스트 데이터 정리 + 예측/추천 함수
-    - 평점 예측: 사용자가 평가한 맥주 중 유사한 K개의 가중평균
-    - 추천 순위: 사용자 프로필과 맥주 벡터의 내적
-[5] K, 추천 방식 선택 (입력 데이터 일부를 검증용으로 사용)
-[6] 모델별 평가 (RMSE, MAE, Recall@N, NDCG@N)
-[7] 정답 맥주 리뷰 수 비교
-[8] 추천 예시
+Code structure (same order as [1]-[8] in the console output)
+[1] Load data, clean reviews of common beers
+[2] Build a TF-IDF vector for each beer
+[3] Compute cosine similarity between beers
+[4] Prepare test data + prediction/recommendation functions
+    - Rating prediction: weighted average over the K most similar beers the user rated
+    - Recommendation ranking: dot product of the user profile and beer vectors
+[5] Select K and ranking method (part of the input data used for validation)
+[6] Evaluate models (RMSE, MAE, Recall@N, NDCG@N)
+[7] Compare review counts of holdout beers
+[8] Recommendation example
 
 ---------------------------------------------------------------------
-수업에서 다루지 않은 라이브러리/함수
-- pyarrow.parquet.ParquetFile(path).iter_batches(batch_size): 큰 parquet 파일을 나눠 읽음 (메모리 절약)
-- TfidfVectorizer의 max_features: 사용할 최대 단어 수 / sublinear_tf: tf 대신 1+log(tf) 사용
-- sklearn.preprocessing.normalize(X, norm="l2"): 각 행 벡터를 길이 1로 정규화
-- scipy.sparse.csr_matrix, hstack: 희소행렬 저장 및 옆으로 이어붙이기
-- numpy.fill_diagonal: 대각선(자기 자신과의 유사도)을 0으로
-- numpy.argpartition: 전체 정렬 없이 상위 k개 위치 찾기
-- numpy.put_along_axis: 행마다 지정한 위치에 값 넣기
-- numpy.where, numpy.clip: 조건에 따라 값 선택 / 범위 밖 값을 경계값으로 자름
-- numpy.random.default_rng(seed).permutation: 시드 고정 셔플 (검증셋 분할)
-- numpy.log2, arange: NDCG 순위별 할인값 계산
-- pandas.get_dummies: 스타일 원핫 인코딩
-- pandas groupby.transform("median"): 스타일별 중앙값으로 ABV 결측 채우기
-- pandas groupby.apply(" ".join), reindex: 맥주별 리뷰 합치기, 맥주 순서 맞추기
+Libraries/functions not covered in class
+- pyarrow.parquet.ParquetFile(path).iter_batches(batch_size): read a large parquet file in chunks (saves memory)
+- TfidfVectorizer max_features: max vocabulary size / sublinear_tf: use 1+log(tf) instead of tf
+- sklearn.preprocessing.normalize(X, norm="l2"): scale each row vector to length 1
+- scipy.sparse.csr_matrix, hstack: store sparse matrices and concatenate them column-wise
+- numpy.fill_diagonal: set the diagonal (self-similarity) to 0
+- numpy.argpartition: find top-k positions without a full sort
+- numpy.put_along_axis: put values at given positions in each row
+- numpy.where, numpy.clip: choose values by condition / cut values outside a range to the boundary
+- numpy.random.default_rng(seed).permutation: seeded shuffle (validation split)
+- numpy.log2, arange: rank discounts for NDCG
+- pandas.get_dummies: one-hot encoding of beer style
+- pandas groupby.transform("median"): fill missing ABV with the median of each style
+- pandas groupby.apply(" ".join), reindex: join reviews per beer, align beer order
 
-참고
-- 강의자료 Machine Learning Module 6 Recommendation, Module 9 (TF-IDF)
+References
+- Lecture slides, Machine Learning Module 6 Recommendation, Module 9 (TF-IDF)
 - https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 - https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html
 - https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html
@@ -42,7 +42,6 @@ Content-based Filtering 맥주 추천
 - https://numpy.org/doc/stable/reference/generated/numpy.put_along_axis.html
 - NDCG: Järvelin & Kekäläinen (2002), Cumulated gain-based evaluation of IR techniques
 """
-import platform
 import time
 from pathlib import Path
 
@@ -56,21 +55,19 @@ from sklearn.preprocessing import normalize
 
 
 # =====================================================================
-# 설정
-#   실험 파라미터, 경로 설정
+# Settings
+# Experiment parameters, paths
 # =====================================================================
-K_CANDIDATES = [3, 5, 10, 20, 30, 50]   # 검증으로 고를 K 후보
+K_CANDIDATES = [3, 5, 10, 20, 30, 50]    # K candidates chosen by validation
 TOP_N_LIST = [5, 10, 20]
-VAL_RATIO = 0.2                          # 입력 데이터 중 검증용 비율
-W_STYLE = 0.5                            # 비교 모델(스타일+ABV) 가중치
+VAL_RATIO = 0.2                          # fraction of input data used for validation
+W_STYLE = 0.5                            # weights for the comparison model (style + ABV)
 W_ABV = 0.2
 SEED = 42
 
-if platform.system() == "Windows":
-    plt.rcParams["font.family"] = "Malgun Gothic"
 plt.rcParams["axes.unicode_minus"] = False
 
-# data/final_data가 있는 폴더를 프로젝트 루트로 사용
+# Use the folder containing data/final_data as the project root
 ROOT = Path(__file__).resolve().parent
 while not (ROOT / "data" / "final_data").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
@@ -86,15 +83,15 @@ def section(title):
 
 
 # =====================================================================
-# [1] 데이터 불러오기
-#   - beer_mapping 순서로 공통 맥주 2,095개의 인덱스 고정
-#   - BeerAdvocate 리뷰 중 공통 맥주 리뷰만 사용
-#   - 빈 리뷰, 같은 사용자가 같은 맥주에 남긴 동일 리뷰 제거
+# [1] Load data
+#   - Fix the index of the 2,095 common beers by beer_mapping order
+#   - Use only BeerAdvocate reviews of common beers
+#   - Remove empty reviews and identical reviews by the same user on the same beer
 # =====================================================================
 mapping = pd.read_parquet(DATA / "beer_mapping.parquet")
 mapping = mapping.sort_values("canonical_beer_id").reset_index(drop=True)
 beer_ids = mapping["canonical_beer_id"].tolist()
-beer_index = {b: i for i, b in enumerate(beer_ids)}   # 공통 맥주 id -> 행 번호
+beer_index = {b: i for i, b in enumerate(beer_ids)}   # common beer id -> row index
 n_items = len(beer_ids)
 ba_to_canon = dict(zip(mapping["ba_beer_id"].astype(str), mapping["canonical_beer_id"]))
 
@@ -103,7 +100,7 @@ test_users = pd.read_parquet(DATA / "test" / "ratebeer_test_users.parquet")
 test_input = pd.read_parquet(DATA / "test" / "ratebeer_test_input.parquet")
 test_holdout = pd.read_parquet(DATA / "test" / "ratebeer_test_holdout.parquet")
 
-# 공통 맥주 리뷰 파일이 없으면 전체 리뷰(682MB)에서 추출해서 저장
+# If the common-beer review file does not exist, extract it from the full reviews (682MB) and save
 common_path = DATA / "train" / "beeradvocate_reviews_common.parquet"
 if not common_path.exists():
     pf = pq.ParquetFile(DATA / "train" / "beeradvocate_reviews.parquet")
@@ -121,17 +118,17 @@ reviews = reviews[reviews["review_text"].fillna("").str.strip() != ""]
 reviews = reviews.drop_duplicates(subset=["user_id", "canonical_beer_id", "review_text"])
 
 review_count = reviews.groupby("canonical_beer_id").size().reindex(beer_ids, fill_value=0)
-section("[1] 데이터")
-print(f"- 공통 맥주 리뷰: {n_raw:,}건 -> {len(reviews):,}건 (빈 리뷰/중복 제거)")
-print(f"- 맥주당 리뷰 수 중앙값: {review_count.median():.0f}개")
-print(f"- 리뷰 3개 이하 맥주 비율: {(review_count <= 3).mean():.1%}")
+section("[1] Data")
+print(f"- Common beer reviews: {n_raw:,} -> {len(reviews):,} (empty/duplicates removed)")
+print(f"- Median reviews per beer: {review_count.median():.0f}")
+print(f"- Share of beers with 3 or fewer reviews: {(review_count <= 3).mean():.1%}")
 
 
 # =====================================================================
-# [2] 맥주 특징 벡터 (TF-IDF)
-#   - 맥주별 리뷰를 하나로 합쳐서 맥주 1개 = 문서 1개로 만듦
-#   - TF-IDF로 (맥주 수 x 단어 수) 행렬 생성
-#   - 비교 모델용으로 TF-IDF + 스타일(원핫) + ABV 행렬도 생성
+# [2] Beer feature vectors (TF-IDF)
+#   - Join all reviews of a beer so that 1 beer = 1 document
+#   - Build a (beers x words) matrix with TF-IDF
+#   - Also build a TF-IDF + style (one-hot) + ABV matrix for the comparison model
 # =====================================================================
 docs = (reviews.groupby("canonical_beer_id")["review_text"]
         .apply(" ".join)
@@ -140,58 +137,58 @@ docs = (reviews.groupby("canonical_beer_id")["review_text"]
 tfidf = TfidfVectorizer(
     stop_words="english",
     max_features=20000,
-    min_df=5,          # 5개 미만 맥주에서만 나온 단어 제외
-    max_df=0.8,        # 80% 이상 맥주에서 나온 단어 제외 (beer, taste 등)
+    min_df=5,          # drop words that appear in fewer than 5 beers
+    max_df=0.8,        # drop words that appear in 80%+ of beers (beer, taste, ...)
     sublinear_tf=True,
 )
-X_text = tfidf.fit_transform(docs)     # 행 단위 L2 정규화된 상태로 반환됨
+X_text = tfidf.fit_transform(docs)     # returned with each row L2-normalized
 vocab = np.array(tfidf.get_feature_names_out())
-section("[2] 맥주 특징 (TF-IDF)")
-print(f"- TF-IDF 행렬: 맥주 {X_text.shape[0]:,}개 x 단어 {X_text.shape[1]:,}개")
+section("[2] Beer features (TF-IDF)")
+print(f"- TF-IDF matrix: {X_text.shape[0]:,} beers x {X_text.shape[1]:,} words")
 
-# 리뷰 많은 맥주 3개의 대표 단어 확인
-print("\n리뷰가 가장 많은 맥주 3개의 상위 단어")
+# Check the top words of the 3 most-reviewed beers
+print("\nTop words of the 3 most-reviewed beers")
 for b in review_count.sort_values(ascending=False).index[:3]:
     i = beer_index[b]
     top_words = vocab[X_text[i].toarray().ravel().argsort()[::-1][:10]]
     print(f"- {mapping.loc[i, 'ba_beer_name']} ({mapping.loc[i, 'ba_style']})")
     print(f"    {', '.join(top_words)}")
 
-# 비교 모델: TF-IDF + 스타일 원핫 + ABV
+# Comparison model: TF-IDF + style one-hot + ABV
 style_onehot = sparse.csr_matrix(pd.get_dummies(mapping["ba_style"]).values.astype(float))
 abv = mapping["ba_abv"].fillna(mapping.groupby("ba_style")["ba_abv"].transform("median"))
-abv = abv.fillna(abv.median())                      # ABV 결측은 스타일 중앙값으로 대체
+abv = abv.fillna(abv.median())                      # missing ABV filled with the style median
 abv_z = ((abv - abv.mean()) / abv.std()).clip(-3, 3).values.reshape(-1, 1)
 X_combo = sparse.hstack([X_text, W_STYLE * style_onehot, W_ABV * sparse.csr_matrix(abv_z)])
 X_combo = normalize(X_combo.tocsr())
 
 
 # =====================================================================
-# [3] 맥주 간 유사도
-#   - 벡터 길이가 1이라 내적 = 코사인 유사도
-#   - 자기 자신과의 유사도(대각선)는 0으로 처리
+# [3] Beer-to-beer similarity
+#   - Vectors have length 1, so dot product = cosine similarity
+#   - Self-similarity (diagonal) is set to 0
 # =====================================================================
 S_text = (X_text @ X_text.T).toarray()
 S_combo = (X_combo @ X_combo.T).toarray()
 np.fill_diagonal(S_text, 0)
 np.fill_diagonal(S_combo, 0)
 
-section("[3] 유사한 맥주 예시 (코사인 유사도)")
-i = beer_index[review_count.idxmax()]               # 리뷰 수 1위 맥주 기준
-print(f"기준: {mapping.loc[i, 'ba_beer_name']} ({mapping.loc[i, 'ba_style']} / 리뷰 수 1위)")
+section("[3] Similar beer example (cosine similarity)")
+i = beer_index[review_count.idxmax()]               # the most-reviewed beer
+print(f"Query: {mapping.loc[i, 'ba_beer_name']} ({mapping.loc[i, 'ba_style']} / most reviewed)")
 for rank, j in enumerate(S_text[i].argsort()[::-1][:5], start=1):
     print(f"  {rank}. {S_text[i, j]:.3f}  {mapping.loc[j, 'ba_beer_name']} ({mapping.loc[j, 'ba_style']})")
 
 
 # =====================================================================
-# [4] 테스트 데이터 정리 + 예측/추천 함수
-#   - 사용자별로 (맥주 인덱스, 평점) 배열로 묶어둠
-#   - predict_ratings: 평점 예측 (유사도 가중평균)
-#   - profile_scores: 추천 점수, 좋아한/싫어한 맥주 모두 반영
-#   - liked_profile_scores: 추천 점수, 좋아한 맥주만 반영
+# [4] Test data + prediction/recommendation functions
+#   - Group each user's data into (beer index, rating) arrays
+#   - predict_ratings: rating prediction (similarity-weighted average)
+#   - profile_scores: ranking score using both liked and disliked beers
+#   - liked_profile_scores: ranking score using liked beers only
 # =====================================================================
 def to_user_dict(df, with_positive=False):
-    """user_id -> [맥주 인덱스 배열, 평점 배열(, 긍정 여부 배열)]"""
+    """user_id -> [beer index array, rating array(, positive flag array)]"""
     df = df.assign(idx=df["canonical_beer_id"].map(beer_index))
     out = {}
     for u, g in df.groupby("user_id"):
@@ -205,13 +202,13 @@ def to_user_dict(df, with_positive=False):
 def predict_ratings(S, in_idx, in_r, k):
     """
     R(m,u) = sum_j S(m,j) R(j,u) / sum_j S(m,j)
-    j: 사용자가 평가한 맥주 중 m과 가장 유사한 k개
-    유사한 맥주가 없으면 사용자 평균 평점
+    j: the k beers most similar to m among the beers the user rated
+    If there is no similar beer, use the user's mean rating
     """
     sims = S[:, in_idx].copy()
     sims[sims < 0] = 0
     if sims.shape[1] > k:
-        # 행마다 상위 k개만 남기고 나머지 유사도는 0
+        # keep only the top k per row, set the other similarities to 0
         drop = np.argpartition(sims, -k, axis=1)[:, :-k]
         np.put_along_axis(sims, drop, 0, axis=1)
     w_sum = sims.sum(axis=1)
@@ -220,17 +217,17 @@ def predict_ratings(S, in_idx, in_r, k):
 
 def profile_scores(S, in_idx, in_r):
     """
-    사용자 프로필 = sum_j (R(j,u) - 사용자 평균) * x_j
-    점수 = x_m · 프로필 = sum_j S(m,j) (R(j,u) - 사용자 평균)
-    평균보다 높게 준 맥주와 비슷할수록 +, 낮게 준 맥주와 비슷할수록 -
+    user profile = sum_j (R(j,u) - user mean) * x_j
+    score = x_m · profile = sum_j S(m,j) (R(j,u) - user mean)
+    + if similar to beers rated above the mean, - if similar to beers rated below it
     """
     return S[:, in_idx] @ (in_r - in_r.mean())
 
 
 def liked_profile_scores(S, in_idx, in_r):
     """
-    좋아한 맥주만 반영한 사용자 프로필
-    평균보다 높게 준 맥주만 (평점 - 평균)만큼 가중치, 평균 이하로 준 맥주는 0
+    User profile using liked beers only
+    Beers rated above the mean are weighted by (rating - mean); beers at or below the mean get 0
     """
     return S[:, in_idx] @ np.clip(in_r - in_r.mean(), 0, None)
 
@@ -238,16 +235,16 @@ def liked_profile_scores(S, in_idx, in_r):
 eval_users = test_users.loc[test_users["evaluable"], "user_id"].tolist()
 inputs = to_user_dict(test_input)
 holdout = to_user_dict(test_holdout, with_positive=True)
-section("[4] 테스트 데이터 (RateBeer)")
-print(f"- 평가 대상 사용자: {len(eval_users):,}명")
-print(f"- 사용자당 평균 입력 맥주: {np.mean([len(inputs[u][0]) for u in eval_users]):.1f}개")
+section("[4] Test data (RateBeer)")
+print(f"- Users evaluated: {len(eval_users):,}")
+print(f"- Mean input beers per user: {np.mean([len(inputs[u][0]) for u in eval_users]):.1f}")
 
 
 # =====================================================================
-# [5] K, 추천 방식 선택
-#   - 정답(holdout)은 쓰지 않고, 입력 데이터의 20%를 검증용으로 분리
-#   - K: 검증 RMSE가 가장 낮은 값
-#   - 추천 방식: 검증 Recall@10이 가장 높은 방식
+# [5] Select K and ranking method
+#   - Holdout is not used; 20% of the input data is split off for validation
+#   - K: lowest validation RMSE
+#   - Ranking method: highest validation Recall@10
 # =====================================================================
 rng = np.random.default_rng(SEED)
 val_split = {}
@@ -255,9 +252,9 @@ for u in eval_users:
     in_idx, in_r = inputs[u]
     perm = rng.permutation(len(in_idx))
     n_val = max(1, int(round(len(in_idx) * VAL_RATIO)))
-    val_split[u] = (perm[n_val:], perm[:n_val])   # (학습용 위치, 검증용 위치)
+    val_split[u] = (perm[n_val:], perm[:n_val])   # (train positions, validation positions)
 
-# K 선택
+# Select K
 val_rmse = {}
 for k in K_CANDIDATES:
     se, cnt = 0.0, 0
@@ -272,7 +269,7 @@ for k in K_CANDIDATES:
 BEST_K = min(val_rmse, key=val_rmse.get)
 
 
-# 추천 방식 선택 (검증용 맥주 중 3.5점 이상을 정답으로 봄)
+# Select ranking method (validation beers rated 3.5+ count as positives)
 def val_recall_at10(rank_fn):
     recalls = []
     for u in eval_users:
@@ -288,42 +285,42 @@ def val_recall_at10(rank_fn):
     return np.mean(recalls)
 
 
-rank_methods = {"좋아함+싫어함": profile_scores, "좋아함만": liked_profile_scores}
+rank_methods = {"like+dislike": profile_scores, "like only": liked_profile_scores}
 val_rank = {name: val_recall_at10(fn) for name, fn in rank_methods.items()}
 BEST_RANK = max(val_rank, key=val_rank.get)
 
-section("[5] K, 추천 방식 선택 (검증 데이터)")
-print("K 선택 (RMSE, 낮을수록 좋음)")
+section("[5] Select K and ranking method (validation data)")
+print("K selection (RMSE, lower is better)")
 for k, v in val_rmse.items():
-    print(f"  K={k:>2}   {v:.4f}" + ("   <- 선택" if k == BEST_K else ""))
-print("\n추천 방식 선택 (Recall@10, 높을수록 좋음)")
+    print(f"  K={k:>2}   {v:.4f}" + ("   <- selected" if k == BEST_K else ""))
+print("\nRanking method selection (Recall@10, higher is better)")
 for name, v in val_rank.items():
-    print(f"  {v:.4f}   {name}" + ("   <- 선택" if name == BEST_RANK else ""))
+    print(f"  {v:.4f}   {name}" + ("   <- selected" if name == BEST_RANK else ""))
 
 plt.figure(figsize=(6, 4))
 plt.plot(list(val_rmse.keys()), list(val_rmse.values()), marker="o")
 plt.axvline(BEST_K, color="gray", linestyle="--")
-plt.xlabel("K (참고하는 유사 맥주 수)")
-plt.ylabel("검증 RMSE")
-plt.title("K 선택 (검증 데이터)")
+plt.xlabel("K (number of similar beers used)")
+plt.ylabel("Validation RMSE")
+plt.title("K selection (validation data)")
 plt.tight_layout()
 plt.savefig(OUT / "content_based_k_selection.png", dpi=150)
 plt.close()
 
 
 # =====================================================================
-# [6] 모델별 평가
-#   - 입력(70%)으로 예측/추천하고 정답(30%)으로 채점
-#   - 평점 예측: RMSE, MAE
-#   - Top-N 추천: Recall@N, NDCG@N (정답 중 3.5점 이상을 맞힌 것으로 봄)
-#   - 입력에 있던 맥주는 추천 후보에서 제외
+# [6] Model evaluation
+#   - Predict/recommend from the input (70%) and score on the holdout (30%)
+#   - Rating prediction: RMSE, MAE
+#   - Top-N recommendation: Recall@N, NDCG@N (holdout beers rated 3.5+ count as hits)
+#   - Beers in the input are excluded from recommendation candidates
 # =====================================================================
 popularity = (train_inter.groupby("canonical_beer_id").size()
               .reindex(beer_ids, fill_value=0).values.astype(float))
 
 
 def evaluate(name, rating_fn, rank_fn):
-    """rating_fn, rank_fn: (in_idx, in_r) -> 맥주별 예측 평점 / 추천 점수"""
+    """rating_fn, rank_fn: (in_idx, in_r) -> predicted rating / ranking score per beer"""
     sq, ab, cnt = 0.0, 0.0, 0
     max_n = max(TOP_N_LIST)
     recall = {n: [] for n in TOP_N_LIST}
@@ -334,13 +331,13 @@ def evaluate(name, rating_fn, rank_fn):
         in_idx, in_r = inputs[u]
         ho_idx, ho_r, ho_pos = holdout[u]
 
-        # 평점 예측 오차
+        # Rating prediction error
         err = rating_fn(in_idx, in_r)[ho_idx] - ho_r
         sq += (err ** 2).sum()
         ab += np.abs(err).sum()
         cnt += len(err)
 
-        # Top-N 추천
+        # Top-N recommendation
         score = rank_fn(in_idx, in_r).astype(float)
         score[in_idx] = -np.inf
         top = np.argpartition(-score, max_n)[:max_n]
@@ -380,32 +377,32 @@ results = pd.DataFrame([
 eval_time = time.time() - t0
 
 pd.set_option("display.width", 200)
-shown = results.round(4).rename_axis(None)       # 출력할 때 index 이름(model) 줄 제거
-section(f"[6] 평가 결과 (RateBeer 사용자 {len(eval_users):,}명)")
-print("평점 예측 (낮을수록 좋음)")
+shown = results.round(4).rename_axis(None)       # drop the index name (model) line when printing
+section(f"[6] Evaluation results ({len(eval_users):,} RateBeer users)")
+print("Rating prediction (lower is better)")
 print(shown[["RMSE", "MAE"]].to_string())
-print("\nTop-N 추천 - Recall (높을수록 좋음)")
+print("\nTop-N recommendation - Recall (higher is better)")
 print(shown[[f"Recall@{n}" for n in TOP_N_LIST]].to_string())
-print("\nTop-N 추천 - NDCG (높을수록 좋음)")
+print("\nTop-N recommendation - NDCG (higher is better)")
 print(shown[[f"NDCG@{n}" for n in TOP_N_LIST]].to_string())
-# [5]에서 선택된 추천 방식에 맞춰 최종 모델 표시
-final_model = {"좋아함+싫어함": "CB-TFIDF", "좋아함만": "CB-TFIDF(liked)"}[BEST_RANK]
+# Mark the final model according to the ranking method selected in [5]
+final_model = {"like+dislike": "CB-TFIDF", "like only": "CB-TFIDF(liked)"}[BEST_RANK]
 model_desc = {
-    "Baseline": "평점은 사용자 평균, 추천은 평가 수가 많은 맥주부터",
-    "CB-TFIDF": "리뷰 TF-IDF, 추천은 좋아한+싫어한 맥주 모두 반영",
-    "CB-TFIDF(pred-rank)": "CB-TFIDF와 같고, 추천만 예측 평점 순서로 정렬",
-    "CB-TFIDF+style+ABV": "CB-TFIDF에 맥주 스타일 + 도수 추가",
-    "CB-TFIDF(liked)": "리뷰 TF-IDF, 추천은 좋아한 맥주만 반영",
+    "Baseline": "rating = user mean, ranking = most-rated beers first",
+    "CB-TFIDF": "review TF-IDF, ranking uses both liked and disliked beers",
+    "CB-TFIDF(pred-rank)": "same as CB-TFIDF, but ranked by predicted rating",
+    "CB-TFIDF+style+ABV": "CB-TFIDF plus beer style + ABV",
+    "CB-TFIDF(liked)": "review TF-IDF, ranking uses liked beers only",
 }
-print("\n모델 설명")
+print("\nModel descriptions")
 for name, desc in model_desc.items():
-    mark = "   <- 최종 (검증으로 선택)" if name == final_model else ""
+    mark = "   <- final (selected by validation)" if name == final_model else ""
     print(f"- {name:<20}: {desc}{mark}")
-print(f"(평가 소요 시간: {eval_time:.1f}초)")
+print(f"(evaluation time: {eval_time:.1f}s)")
 results.round(4).to_csv(OUT / "content_based_results.csv", encoding="utf-8-sig")
 
 fig, axes = plt.subplots(1, 3, figsize=(18, 4.8))
-results[["RMSE", "MAE"]].plot.bar(ax=axes[0], rot=20, title="평점 예측 오차 (낮을수록 좋음)")
+results[["RMSE", "MAE"]].plot.bar(ax=axes[0], rot=20, title="Rating prediction error (lower is better)")
 results[[f"Recall@{n}" for n in TOP_N_LIST]].plot.bar(ax=axes[1], rot=20, title="Recall@N")
 results[[f"NDCG@{n}" for n in TOP_N_LIST]].plot.bar(ax=axes[2], rot=20, title="NDCG@N")
 for ax in axes:
@@ -417,39 +414,39 @@ plt.close()
 
 
 # =====================================================================
-# [7] 정답 맥주 리뷰 수 비교
-#   - 사용자들이 실제로 좋아한 맥주가 리뷰 많은(유명한) 맥주 위주인지 확인
-#   - Baseline(평가 수 많은 순) 점수가 높게 나오는 이유 설명용
+# [7] Review counts of holdout beers
+#   - Check whether the beers users actually liked are mostly well-reviewed (popular) ones
+#   - Explains why the Baseline (most-rated first) scores high
 # =====================================================================
 pos_beers = test_holdout[test_holdout["user_id"].isin(eval_users) & test_holdout["is_positive"]]
 pos_review_cnt = review_count.reindex(pos_beers["canonical_beer_id"])
-section("[7] 맥주 리뷰 수 비교")
-print(f"- 전체 공통 맥주의 리뷰 수 중앙값: {review_count.median():.0f}개")
-print(f"- 사용자가 실제로 좋아한 맥주(정답 중 3.5점 이상)의 리뷰 수 중앙값: {pos_review_cnt.median():.0f}개")
+section("[7] Review count comparison")
+print(f"- Median review count, all common beers: {review_count.median():.0f}")
+print(f"- Median review count, beers users actually liked (holdout, 3.5+): {pos_review_cnt.median():.0f}")
 
 
 # =====================================================================
-# [8] 추천 예시
-#   - 입력 맥주 40개 이하인 사용자 중 정답 맥주가 가장 많은 사용자 1명
-#   - 높게 평가한 맥주 5개와 최종 추천 방식으로 뽑은 Top 10 출력
+# [8] Recommendation example
+#   - Among users with 40 or fewer input beers, the one with the most holdout beers
+#   - Print 5 top-rated beers and the Top 10 from the final ranking method
 # =====================================================================
 u = max(eval_users, key=lambda x: len(holdout[x][0]) if len(inputs[x][0]) <= 40 else 0)
 in_idx, in_r = inputs[u]
 ho_idx, ho_r, ho_pos = holdout[u]
 
-section(f"[8] 추천 예시 (사용자: {u}, 추천 방식: {BEST_RANK})")
-print("높게 평가한 맥주")
+section(f"[8] Recommendation example (user: {u}, ranking method: {BEST_RANK})")
+print("Top-rated beers")
 for pos in np.argsort(-in_r)[:5]:
     j = in_idx[pos]
-    print(f"  {in_r[pos]:.2f}점  {mapping.loc[j, 'ba_beer_name']} ({mapping.loc[j, 'ba_style']})")
+    print(f"  {in_r[pos]:.2f}  {mapping.loc[j, 'ba_beer_name']} ({mapping.loc[j, 'ba_style']})")
 
 pred = predict_ratings(S_text, in_idx, in_r, BEST_K)
 score = rank_methods[BEST_RANK](S_text, in_idx, in_r)
 score[in_idx] = -np.inf
 positive_set = set(ho_idx[ho_pos])
-print("\n추천 Top 10  (* = 정답에서 실제로 3.5점 이상 준 맥주 / 예측 = 예측 평점)")
+print("\nTop 10 recommendations  (* = rated 3.5+ in holdout / pred = predicted rating)")
 for rank, j in enumerate(np.argsort(-score)[:10], start=1):
     mark = "*" if j in positive_set else " "
-    print(f" {rank:>2}. {mark} 예측 {pred[j]:.2f}  {mapping.loc[j, 'ba_beer_name']} ({mapping.loc[j, 'ba_style']})")
+    print(f" {rank:>2}. {mark} pred {pred[j]:.2f}  {mapping.loc[j, 'ba_beer_name']} ({mapping.loc[j, 'ba_style']})")
 
-print("\n결과 파일 저장 위치:", OUT)
+print("\nResults saved to:", OUT)
