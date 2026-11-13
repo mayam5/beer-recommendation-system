@@ -1,0 +1,234 @@
+﻿canonical_beer_id,ba_beer_id,rb_beer_id,normalized_name,ba_beer_name,rb_beer_name,ba_abv,rb_abv,abv_difference,ba_style,rb_style,style_relation,mapping_status
+BEER_000018,403,5366,acme california ipa,ACME California IPA,Acme California IPA,6.5,6.5,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000019,406,4691,acme california pale ale,ACME California Pale Ale,Acme California Pale Ale,5.0,5.0,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000025,29145,16402,aecht schlenkerla helles lagerbier,Aecht Schlenkerla Helles Lagerbier,Aecht Schlenkerla Helles Lagerbier,4.3,4.3,0.0,Munich Helles Lager,Dortmunder/Helles,compatible,provisional
+BEER_000026,1614,3734,affligem tripel,Affligem Tripel,Affligem Tripel,9.5,9.5,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_000029,1309,13,alaskan amber,Alaskan Amber,Alaskan Amber,5.3,5.3,0.0,Altbier,Altbier,equivalent,provisional
+BEER_000030,22787,45475,alaskan ipa,Alaskan IPA,Alaskan IPA,6.2,6.2,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000031,1469,14,alaskan pale,Alaskan Pale,Alaskan Pale,5.2,5.2,0.0,American Blonde Ale,Golden Ale/Blond Ale,compatible,provisional
+BEER_000032,1768,9018,alaskan winter ale,Alaskan Winter Ale,Alaskan Winter Ale,6.4,6.4,0.0,Old Ale,Old Ale,equivalent,provisional
+BEER_000036,3916,14396,alesmith ipa,AleSmith IPA,AleSmith IPA,7.25,7.25,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000039,1370,2492,alesmith x,AleSmith X,AleSmith X,5.0,5.0,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000042,59,3014,allagash white,Allagash White,Allagash White,5.2,5.0,0.2000000000000001,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_000058,436,39,amstel light,Amstel Light,Amstel Light,3.5,3.5,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000070,23942,47436,anchor bock beer,Anchor Bock Beer,Anchor Bock Beer,5.5,5.5,0.0,Bock,Dunkler Bock,compatible,provisional
+BEER_000071,53899,112322,anchor humming ale,Anchor Humming Ale,Anchor Humming Ale,5.9,5.9,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000072,665,47,anchor liberty ale,Anchor Liberty Ale,Anchor Liberty Ale,6.0,5.9,0.0999999999999996,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000073,61,48,anchor porter,Anchor Porter,Anchor Porter,5.6,5.6,0.0,American Porter,Porter,compatible,provisional
+BEER_000074,648,4729,anchor small beer,Anchor Small Beer,Anchor Small Beer,3.3,3.3,0.0,English Bitter,Bitter,equivalent,provisional
+BEER_000075,2550,14934,anchor summer beer,Anchor Summer Beer,Anchor Summer Beer,4.6,4.5,0.0999999999999996,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_000077,2899,1147,andechser doppelbock dunkel,Andechser Doppelbock Dunkel,Andechser Doppelbock Dunkel,7.1,7.1,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_000091,24012,46371,arcadia amber ale,Arcadia Amber Ale,Arcadia Amber Ale,5.8,5.8,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_000092,27286,53344,arcadia hopmouth double ipa,Arcadia HopMouth Double IPA,Arcadia Hopmouth Double IPA,8.1,8.1,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_000093,2866,6551,arcadia nut brown ale,Arcadia Nut Brown Ale,Arcadia Nut Brown Ale,5.6,5.6,0.0,English Brown Ale,Brown Ale,compatible,provisional
+BEER_000104,134,2019,ayinger altbairisch dunkel,Ayinger Altbairisch Dunkel,Ayinger Altbairisch Dunkel,5.0,5.0,0.0,Munich Dunkel Lager,Dunkel,compatible,provisional
+BEER_000105,131,1090,ayinger celebrator doppelbock,Ayinger Celebrator Doppelbock,Ayinger Celebrator Doppelbock,6.7,6.7,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_000107,135,2719,ayinger ur-weisse,Ayinger Ur-Weisse,Ayinger Ur-Weisse,5.8,5.8,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_000141,30727,59673,beach bum blonde ale,Beach Bum Blonde Ale,Beach Bum Blonde Ale,5.4,5.4,0.0,American Blonde Ale,Golden Ale/Blond Ale,compatible,provisional
+BEER_000165,5554,35164,big sky ipa,Big Sky IPA,Big Sky IPA,6.2,6.2,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000180,1641,851,bitburger premium pils,Bitburger Premium Pils,Bitburger Premium Pils,4.8,4.8,0.0,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_000219,2426,4505,boon kriek,Boon Kriek,Boon Kriek,5.0,5.0,0.0,Lambic - Fruit,Lambic - Fruit,equivalent,provisional
+BEER_000221,1672,3955,bornem triple,Bornem Triple,Bornem Triple,9.0,9.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_000255,788,532,brooklyn pilsner,Brooklyn Pilsner,Brooklyn Pilsner,5.1,5.0,0.0999999999999996,German Pilsener,Pilsener,compatible,provisional
+BEER_000256,51480,107007,brooklyn sorachi ace,Brooklyn Sorachi Ace,Brooklyn Sorachi Ace,7.6,7.6,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_000257,1137,534,brooklyner weisse,Brooklyner Weisse,Brooklyner Weisse,5.0,5.0,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_000267,1642,475,bud ice,Bud Ice,Bud Ice,5.5,5.5,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000269,1320,474,bud light,Bud Light,Bud Light,4.2,4.2,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000271,65,473,budweiser,Budweiser,Budweiser,5.0,5.0,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000273,43118,90235,budweiser american ale,Budweiser American Ale,Budweiser American Ale,5.3,5.3,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_000274,20732,40957,budweiser select,Budweiser Select,Budweiser Select,4.3,4.3,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000291,670,492,busch beer,Busch Beer,Busch Beer,4.6,4.6,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000293,1390,493,busch light,Busch Light,Busch Light,4.1,4.1,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000294,2906,8587,butte creek organic india pale ale,Butte Creek Organic India Pale Ale,Butte Creek Organic India Pale Ale,6.7,6.7,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000296,2310,180,butte creek organic porter,Butte Creek Organic Porter,Butte Creek Organic Porter,6.1,5.9,0.1999999999999993,American Porter,Porter,compatible,provisional
+BEER_000302,10784,22106,caldera ipa,Caldera IPA,Caldera IPA,6.1,6.1,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000303,25414,1846,caldera pale ale,Caldera Pale Ale,Caldera Pale Ale,5.5,5.6,0.0999999999999996,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000376,837,707,coors light,Coors Light,Coors Light,4.2,4.2,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000377,20765,2467,coors winterfest,Coors Winterfest,Coors Winterfest,5.6,5.6,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_000388,232,742,corona extra,Corona Extra,Corona Extra,4.6,4.6,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000391,5068,3306,cottonwood low down brown ale,Cottonwood Low Down Brown Ale,Cottonwood Low Down  Brown Ale,5.4,5.7,0.2999999999999998,English Brown Ale,Brown Ale,compatible,provisional
+BEER_000403,2831,4754,dab original,DAB Original,DAB Original,5.0,5.0,0.0,Dortmunder / Export Lager,Dortmunder/Helles,compatible,provisional
+BEER_000407,5387,11212,dark horse amber ale,Dark Horse Amber Ale,Dark Horse Amber Ale,5.5,5.5,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_000408,5385,10327,dark horse crooked tree ipa,Dark Horse Crooked Tree IPA,Dark Horse Crooked Tree IPA,6.0,6.0,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000409,22381,43971,dark horse double crooked tree ipa,Dark Horse Double Crooked Tree IPA,Dark Horse Double Crooked Tree IPA,13.6,13.6,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_000410,39129,78154,dark horse perkulator coffee dopplebock,Dark Horse Perkulator Coffee Dopplebock,Dark Horse Perkulator Coffee Dopplebock,7.5,7.5,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_000438,1186,2227,dixie blackened voodoo lager,Dixie Blackened Voodoo Lager,Dixie Blackened Voodoo Lager,5.0,5.0,0.0,Schwarzbier,Schwarzbier,equivalent,provisional
+BEER_000441,1189,2266,dominion lager,Dominion Lager,Dominion Lager,5.6,5.4,0.1999999999999993,Dortmunder / Export Lager,Dortmunder/Helles,compatible,provisional
+BEER_000475,202,5112,einbecker mai-ur-bock,Einbecker Mai-Ur-Bock,Einbecker Mai-Ur-Bock,6.5,6.5,0.0,Maibock / Helles Bock,Heller Bock,compatible,provisional
+BEER_000476,1873,5403,einbecker ur-bock dunkel,Einbecker Ur-Bock Dunkel,Einbecker Ur-Bock Dunkel,6.5,6.5,0.0,Bock,Dunkler Bock,compatible,provisional
+BEER_000505,2041,2469,erdinger weissbier dunkel,Erdinger Weissbier Dunkel,Erdinger Weissbier Dunkel,5.6,5.6,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_000512,24206,10586,ettaler kloster dunkel,Ettaler Kloster Dunkel,Ettaler Kloster Dunkel,5.0,5.2,0.2000000000000001,Munich Dunkel Lager,Dunkel,compatible,provisional
+BEER_000568,5441,3168,founders centennial ipa,Founders Centennial IPA,Founders Centennial IPA,7.2,7.2,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000569,48911,101199,founders cerise,Founders Cerise,Founders Cerise,6.5,6.5,0.0,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_000577,20478,40277,founders harvest ale,Founders Harvest Ale,Founders Harvest Ale,6.5,6.5,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000581,4073,3170,founders pale ale,Founders Pale Ale,Founders Pale Ale,5.4,5.4,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000582,7348,3173,founders porter,Founders Porter,Founders Porter,6.5,6.5,0.0,American Porter,Porter,compatible,provisional
+BEER_000594,3150,11335,frankenheim alt,Frankenheim Alt,Frankenheim Alt,4.8,4.8,0.0,Altbier,Altbier,equivalent,provisional
+BEER_000615,942,559,full sail ipa,Full Sail IPA,Full Sail IPA,6.0,6.0,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000616,214,558,full sail pale ale,Full Sail Pale Ale,Full Sail Pale Ale,5.4,5.4,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000639,1376,74,genesee cream ale,Genesee Cream Ale,Genesee Cream Ale,5.2,5.1,0.1000000000000005,Cream Ale,Cream Ale,equivalent,provisional
+BEER_000653,33651,2447,gordon biersch blonde bock,Gordon Biersch Blonde Bock,Gordon Biersch Blonde Bock,7.0,7.0,0.0,Maibock / Helles Bock,Heller Bock,compatible,provisional
+BEER_000661,5423,12799,gouden carolus tripel,Gouden Carolus Tripel,Gouden Carolus Tripel,9.0,9.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_000666,10364,5595,grain belt premium,Grain Belt Premium,Grain Belt Premium,4.6,4.6,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000685,225,1224,great lakes burning river pale ale,Great Lakes Burning River Pale Ale,Great Lakes Burning River Pale Ale,6.0,6.0,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_000687,228,1217,great lakes dortmunder gold,Great Lakes Dortmunder Gold,Great Lakes Dortmunder Gold,5.8,5.8,0.0,Dortmunder / Export Lager,Dortmunder/Helles,compatible,provisional
+BEER_000688,226,1226,great lakes edmund fitzgerald porter,Great Lakes Edmund Fitzgerald Porter,Great Lakes Edmund Fitzgerald Porter,5.8,5.8,0.0,American Porter,Porter,compatible,provisional
+BEER_000689,45558,65419,great lakes grassroots ale,Great Lakes Grassroots Ale,Great Lakes Grassroots Ale,6.2,6.2,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_000694,1792,10270,great lakes nosferatu,Great Lakes Nosferatu,Great Lakes Nosferatu,8.0,8.0,0.0,American Strong Ale,American Strong Ale,equivalent,provisional
+BEER_000695,13896,17359,great lakes oktoberfest,Great Lakes Oktoberfest,Great Lakes Oktoberfest,6.5,6.5,0.0,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_000698,63562,139515,great lakes the doppelrock,Great Lakes The Doppelrock,Great Lakes The Doppelrock,7.8,7.8,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_000703,34175,53801,green flash trippel,Green Flash Trippel,Green Flash Trippel,9.7,9.7,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_000736,666,655,hacker-pschorr dunkle weisse,Hacker-Pschorr Dunkle Weisse,Hacker-Pschorr Dunkle Weisse,5.3,5.3,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_000737,9603,656,hacker-pschorr edelhell,Hacker-Pschorr Edelhell,Hacker-Pschorr Edelhell,5.5,5.5,0.0,Munich Helles Lager,Dortmunder/Helles,compatible,provisional
+BEER_000755,311,694,harpoon ipa,Harpoon IPA,Harpoon IPA,5.9,5.9,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000778,6373,7537,highland black mocha stout,Highland Black Mocha Stout,Highland Black Mocha Stout,5.6,5.3,0.2999999999999998,American Stout,Stout,compatible,provisional
+BEER_000781,2526,7533,highland gaelic ale,Highland Gaelic Ale,Highland Gaelic Ale,5.8,5.8,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_000782,6372,7536,highland kashmir ipa,Highland Kashmir IPA,Highland Kashmir IPA,5.6,5.6,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_000783,6088,7534,highland oatmeal porter,Highland Oatmeal Porter,Highland Oatmeal Porter,5.8,5.8,0.0,American Porter,Porter,compatible,provisional
+BEER_000827,1299,411,icehouse,Icehouse,Icehouse,5.5,5.5,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000841,2680,616,iron city beer,Iron City Beer,Iron City Beer,4.5,4.5,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_000869,2212,4003,jever pilsener,Jever Pilsener,Jever Pilsener,4.9,4.9,0.0,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_000875,616,6459,julius echter hefe-weissbier dunkel,Julius Echter Hefe-Weissbier Dunkel,Julius Echter Hefe-Weissbier Dunkel,4.9,4.9,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_000886,1229,5093,kapuziner weissbier,Kapuziner Weissbier,Kapuziner Weissbier,5.4,5.4,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_000908,18698,38441,kentucky bourbon barrel ale,Kentucky Bourbon Barrel Ale,Kentucky Bourbon Barrel Ale,8.19,8.19,0.0,American Strong Ale,American Strong Ale,equivalent,provisional
+BEER_000916,1341,2332,keystone light,Keystone Light,Keystone Light,4.2,4.2,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_000998,6436,9351,la moneuse,La Moneuse,La Moneuse,8.0,8.0,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_001001,1371,252,labatt blue,Labatt Blue,Labatt Blue,5.0,5.0,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001002,1823,263,labatt blue light,Labatt Blue Light,Labatt Blue Light,4.0,4.0,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_001027,34804,68574,landshark lager,Landshark Lager,LandShark Lager,4.7,4.7,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001061,1298,1395,little kings cream ale,Little Kings Cream Ale,Little Kings Cream Ale,5.5,5.5,0.0,Cream Ale,Cream Ale,equivalent,provisional
+BEER_001131,32543,64779,michelob bavarian style wheat,Michelob Bavarian Style Wheat,Michelob Bavarian Style Wheat,5.2,5.2,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001136,1253,478,michelob light,Michelob Light,Michelob Light,4.3,4.3,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_001137,2209,10937,michelob marzen,Michelob Marzen,Michelob Marzen,5.1,4.9,0.1999999999999993,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_001138,327,485,michelob pale ale,Michelob Pale Ale,Michelob Pale Ale,5.5,5.2,0.2999999999999998,English Pale Ale,English Pale Ale,equivalent,provisional
+BEER_001139,31731,65139,michelob porter,Michelob Porter,Michelob Porter,5.9,5.9,0.0,American Porter,Porter,compatible,provisional
+BEER_001140,3734,12963,michelob ultra,Michelob Ultra,Michelob Ultra,4.2,4.2,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_001142,1505,6508,michigan brewing high seas india pale ale,Michigan Brewing High Seas India Pale Ale,Michigan Brewing High Seas India Pale Ale,7.2,7.0,0.2000000000000001,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001155,580,407,miller high life,Miller High Life,Miller High Life,5.0,4.7,0.2999999999999998,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001156,2295,409,miller high life light,Miller High Life Light,Miller High Life Light,4.5,4.2,0.2999999999999998,Light Lager,Pale Lager,compatible,provisional
+BEER_001157,332,403,miller lite,Miller Lite,Miller Lite,4.17,4.2,0.0300000000000002,Light Lager,Pale Lager,compatible,provisional
+BEER_001161,7904,28422,millstream schokolade bock,Millstream Schokolade Bock,Millstream Schokolade Bock,5.7,5.7,0.0,Bock,Dunkler Bock,compatible,provisional
+BEER_001169,1321,744,modelo especial,Modelo Especial,Modelo Especial,4.4,4.4,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001182,1359,8025,molson ice,Molson Ice,Molson Ice,5.6,5.6,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001223,1524,495,natural light,Natural Light,Natural Light,4.2,4.2,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_001228,6157,7834,new holland black tulip trippel ale,New Holland Black Tulip Trippel Ale,New Holland Black Tulip Trippel Ale,9.0,9.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_001229,24884,49414,new holland imperial hatter,New Holland Imperial Hatter,New Holland Imperial Hatter,9.4,9.4,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_001231,2208,2016,new holland zoomer wit,New Holland Zoomer Wit,New Holland Zoomer Wit,5.0,4.7,0.2999999999999998,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001232,639,132,newcastle brown ale,Newcastle Brown Ale,Newcastle Brown Ale,4.7,4.7,0.0,English Brown Ale,Brown Ale,compatible,provisional
+BEER_001234,3153,7120,newport storm hurricane amber ale,Newport Storm Hurricane Amber Ale,Newport Storm Hurricane Amber Ale,5.2,5.2,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_001293,738,2247,odell cutthroat porter,Odell Cutthroat Porter,Odell Cutthroat Porter,5.1,5.1,0.0,American Porter,Porter,compatible,provisional
+BEER_001294,736,2253,odell easy street wheat,Odell Easy Street Wheat,Odell Easy Street Wheat,4.6,4.6,0.0,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_001296,737,2254,odell levity amber ale,Odell Levity Amber Ale,Odell Levity Amber Ale,5.0,5.1,0.0999999999999996,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_001299,1504,4996,okocim porter,Okocim Porter,Okocim Porter,8.1,8.3,0.200000000000001,Baltic Porter,Baltic Porter,equivalent,provisional
+BEER_001316,16506,33198,ommegang witte,Ommegang Witte,Ommegang Witte,5.1,5.1,0.0,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001317,5605,4967,oranjeboom premium lager,Oranjeboom Premium Lager,Oranjeboom Premium Lager,5.0,5.0,0.0,Euro Pale Lager,Pale Lager,compatible,provisional
+BEER_001325,14069,28125,otter creek alpine ale,Otter Creek Alpine Ale,Otter Creek Alpine Ale,5.9,5.9,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_001326,434,2428,otter creek copper ale,Otter Creek Copper Ale,Otter Creek Copper Ale,5.4,5.4,0.0,Altbier,Altbier,equivalent,provisional
+BEER_001328,432,2429,otter creek pale ale,Otter Creek Pale Ale,Otter Creek Pale Ale,4.6,4.6,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001330,25277,49975,oud beersel framboise,Oud Beersel Framboise,Oud Beersel Framboise,5.0,5.0,0.0,Lambic - Fruit,Lambic - Fruit,equivalent,provisional
+BEER_001336,3248,8670,pater lieven tripel,Pater Lieven Tripel,Pater Lieven Tripel,8.0,8.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_001337,1784,645,paulaner premium pils,Paulaner Premium Pils,Paulaner Premium Pils,4.9,4.9,0.0,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_001345,382,3200,penn weizen,Penn Weizen,Penn Weizen,5.0,5.0,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001371,17770,35759,point cascade pale ale,Point Cascade Pale Ale,Point Cascade Pale Ale,5.4,5.4,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001391,2910,7624,presidente,Presidente,Presidente,5.0,5.0,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001399,799,8975,radeberger pilsner,Radeberger Pilsner,Radeberger Pilsner,4.8,4.8,0.0,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_001422,1207,410,red dog,Red Dog,Red Dog,5.0,5.0,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001432,72,669,redhook nut brown ale,Redhook Nut Brown Ale,Redhook Nut Brown Ale,5.57,5.64,0.0699999999999994,English Brown Ale,Brown Ale,compatible,provisional
+BEER_001473,3680,523,river horse hop hazard pale ale,River Horse Hop Hazard Pale Ale,River Horse Hop Hazard Pale Ale,6.5,6.5,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001474,20889,21662,river horse tripel horse,River Horse Tripel Horse,River Horse Tripel Horse,10.0,10.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_001482,13770,27619,rock green light,Rock Green Light,Rock Green Light,3.7,3.7,0.0,Light Lager,Pale Lager,compatible,provisional
+BEER_001488,567,747,rolling rock extra pale,Rolling Rock Extra Pale,Rolling Rock Extra Pale,4.6,4.5,0.0999999999999996,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001506,1065,1339,saint arnold amber ale,Saint Arnold Amber Ale,Saint Arnold Amber Ale,5.5,5.5,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_001510,17492,31293,saint arnold elissa ipa,Saint Arnold Elissa IPA,Saint Arnold Elissa IPA,6.6,6.6,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001519,21300,41887,samuel adams black lager,Samuel Adams Black Lager,Samuel Adams Black Lager,4.9,4.9,0.0,Schwarzbier,Schwarzbier,equivalent,provisional
+BEER_001520,27514,52725,samuel adams brown ale,Samuel Adams Brown Ale,Samuel Adams Brown Ale,5.35,5.35,0.0,English Brown Ale,Brown Ale,compatible,provisional
+BEER_001521,108,166,samuel adams cherry wheat,Samuel Adams Cherry Wheat,Samuel Adams Cherry Wheat,5.3,5.4,0.1000000000000005,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001522,14309,29842,samuel adams chocolate bock,Samuel Adams Chocolate Bock,Samuel Adams Chocolate Bock,5.8,5.8,0.0,Bock,Dunkler Bock,compatible,provisional
+BEER_001523,52633,106388,samuel adams coastal wheat,Samuel Adams Coastal Wheat,Samuel Adams Coastal Wheat,5.3,5.3,0.0,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_001524,1903,5929,samuel adams cranberry lambic,Samuel Adams Cranberry Lambic,Samuel Adams Cranberry Lambic,5.9,5.9,0.0,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001526,38366,75905,samuel adams dunkelweizen,Samuel Adams Dunkelweizen,Samuel Adams Dunkelweizen,5.1,5.1,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_001527,15216,30059,samuel adams hefeweizen,Samuel Adams Hefeweizen,Samuel Adams Hefeweizen,5.4,5.4,0.0,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_001528,20564,40127,samuel adams holiday porter,Samuel Adams Holiday Porter,Samuel Adams Holiday Porter,5.8,5.8,0.0,American Porter,Porter,compatible,provisional
+BEER_001529,57252,117828,samuel adams latitude 48 ipa,Samuel Adams Latitude 48 IPA,Samuel Adams Latitude 48 IPA,6.0,6.0,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001531,102,167,samuel adams octoberfest,Samuel Adams Octoberfest,Samuel Adams Octoberfest,5.3,5.3,0.0,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_001532,833,1144,samuel adams pale ale,Samuel Adams Pale Ale,Samuel Adams Pale Ale,5.25,5.4,0.1500000000000003,English Pale Ale,English Pale Ale,equivalent,provisional
+BEER_001533,67044,140821,samuel adams rustic saison,Samuel Adams Rustic Saison,Samuel Adams Rustic Saison,4.35,4.35,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_001535,103,171,samuel adams summer ale,Samuel Adams Summer Ale,Samuel Adams Summer Ale,5.3,5.3,0.0,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_001537,8297,165,samuel adams white ale,Samuel Adams White Ale,Samuel Adams White Ale,5.2,5.4,0.2000000000000001,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001541,1462,554,saranac belgian white,Saranac Belgian White,Saranac Belgian White,5.3,5.3,0.0,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001543,34304,68545,saranac black diamond bock,Saranac Black Diamond Bock,Saranac Black Diamond Bock,6.0,6.0,0.0,Bock,Dunkler Bock,compatible,provisional
+BEER_001544,321,548,saranac black forest,Saranac Black Forest,Saranac Black Forest,5.5,5.2,0.2999999999999998,Schwarzbier,Schwarzbier,equivalent,provisional
+BEER_001547,902,6702,saranac caramel porter,Saranac Caramel Porter,Saranac Caramel Porter,5.4,5.4,0.0,American Porter,Porter,compatible,provisional
+BEER_001548,14486,546,saranac golden pilsener,Saranac Golden Pilsener,Saranac Golden Pilsener,5.1,5.1,0.0,German Pilsener,Pilsener,compatible,provisional
+BEER_001549,6799,17695,saranac hefeweizen,Saranac Hefeweizen,Saranac Hefeweizen,5.6,5.6,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001551,1464,553,saranac india pale ale,Saranac India Pale Ale,Saranac India Pale Ale,5.8,5.8,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001555,1522,9093,saranac octoberfest,Saranac Octoberfest,Saranac Octoberfest,5.4,5.4,0.0,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_001556,914,544,saranac pale ale,Saranac Pale Ale,Saranac Pale Ale,5.5,5.5,0.0,English Pale Ale,English Pale Ale,equivalent,provisional
+BEER_001559,23155,45988,saranac summer ale,Saranac Summer Ale,Saranac Summer Ale,4.7,4.7,0.0,American Pale Wheat Ale,Wheat Ale,compatible,provisional
+BEER_001584,1629,7100,schlafly pale ale,Schlafly Pale Ale,Schlafly Pale Ale,4.4,4.4,0.0,English Pale Ale,English Pale Ale,equivalent,provisional
+BEER_001585,6744,7099,schlafly pilsner,Schlafly Pilsner,Schlafly Pilsner,4.8,4.9,0.1000000000000005,German Pilsener,Pilsener,compatible,provisional
+BEER_001595,1934,10514,schneider aventinus weizen-eisbock,Schneider Aventinus Weizen-Eisbock,Schneider Aventinus Weizen-Eisbock,12.0,12.0,0.0,Eisbock,Eisbock,equivalent,provisional
+BEER_001597,3280,1762,schneider weisse original,Schneider Weisse Original,Schneider Weisse Original,5.4,5.4,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001607,10414,23176,schwelmer alt,Schwelmer Alt,Schwelmer Alt,4.2,4.2,0.0,Altbier,Altbier,equivalent,provisional
+BEER_001615,30936,59324,sea dog apricot wheat beer,Sea Dog Apricot Wheat Beer,Sea Dog Apricot Wheat Beer,4.6,4.6,0.0,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001616,3072,7729,sea dog raspberry wheat ale,Sea Dog Raspberry Wheat Ale,Sea Dog Raspberry Wheat Ale,4.5,4.5,0.0,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001617,7558,2210,sea dog riverdriver hazelnut porter,Sea Dog Riverdriver Hazelnut Porter,Sea Dog Riverdriver Hazelnut Porter,5.88,5.6,0.2800000000000002,American Porter,Porter,compatible,provisional
+BEER_001633,60642,127575,shiner oktoberfest,Shiner Oktoberfest,Shiner Oktoberfest,5.8,5.7,0.0999999999999996,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_001635,1120,2414,shipyard export ale,Shipyard Export Ale,Shipyard Export Ale,5.0,5.1,0.0999999999999996,American Blonde Ale,Golden Ale/Blond Ale,compatible,provisional
+BEER_001637,39908,81108,shock top belgian white,Shock Top Belgian White,Shock Top Belgian White,5.2,5.2,0.0,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001643,1904,370,sierra nevada celebration ale,Sierra Nevada Celebration Ale,Sierra Nevada Celebration Ale,6.8,6.8,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001645,52371,93000,sierra nevada estate brewers harvest ale,Sierra Nevada Estate Brewers Harvest Ale,Sierra Nevada Estate Brewers Harvest Ale,6.7,6.7,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001646,55243,113317,sierra nevada glissade golden bock,Sierra Nevada Glissade Golden Bock,Sierra Nevada Glissade Golden Bock,6.4,6.4,0.0,Maibock / Helles Bock,Heller Bock,compatible,provisional
+BEER_001647,48434,100383,sierra nevada kellerweis hefeweizen,Sierra Nevada Kellerweis Hefeweizen,Sierra Nevada Kellerweis Hefeweizen,4.8,4.8,0.0,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001648,279,366,sierra nevada porter,Sierra Nevada Porter,Sierra Nevada Porter,5.6,5.6,0.0,American Porter,Porter,compatible,provisional
+BEER_001652,283,367,sierra nevada stout,Sierra Nevada Stout,Sierra Nevada Stout,5.8,5.8,0.0,American Stout,Stout,compatible,provisional
+BEER_001653,30420,59261,sierra nevada torpedo extra ipa,Sierra Nevada Torpedo Extra IPA,Sierra Nevada Torpedo Extra IPA,7.2,7.2,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001687,35207,69604,smuttynose hanami ale,Smuttynose Hanami Ale,Smuttynose Hanami Ale,5.7,5.7,0.0,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001688,622,5576,smuttynose robust porter,Smuttynose Robust Porter,Smuttynose Robust Porter,5.7,5.7,0.0,American Porter,Porter,compatible,provisional
+BEER_001694,29211,59151,southampton 10th anniversary old ale,Southampton 10th Anniversary Old Ale,Southampton 10th Anniversary Old Ale,8.7,8.7,0.0,Old Ale,Old Ale,equivalent,provisional
+BEER_001695,43341,89972,southampton altbier,Southampton Altbier,Southampton Altbier,5.0,5.1,0.0999999999999996,Altbier,Altbier,equivalent,provisional
+BEER_001697,18630,37625,southampton cuvee des fleurs,Southampton Cuvee Des Fleurs,Southampton Cuvee des Fleurs,8.2,8.2,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_001700,17674,34765,southampton may bock,Southampton May Bock,Southampton May Bock,6.5,6.5,0.0,Maibock / Helles Bock,Heller Bock,compatible,provisional
+BEER_001705,7401,7223,southampton saison,Southampton Saison,Southampton Saison,6.5,6.5,0.0,Saison / Farmhouse Ale,Saison,equivalent,provisional
+BEER_001720,99,2094,spaten optimator,Spaten Optimator,Spaten Optimator,7.6,7.6,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_001721,1945,2542,spaten pils,Spaten Pils,Spaten Pils,5.0,5.0,0.0,German Pilsener,Pilsener,compatible,provisional
+BEER_001736,722,2528,st. bernardus tripel,St. Bernardus Tripel,St. Bernardus Tripel,8.0,8.0,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_001738,698,732,st. pauli girl special dark,St. Pauli Girl Special Dark,St. Pauli Girl Special Dark,4.8,4.8,0.0,Munich Dunkel Lager,Dunkel,compatible,provisional
+BEER_001756,628,4568,sterkens white ale,Sterkens White Ale,Sterkens White Ale,4.7,4.7,0.0,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001767,32360,63291,stone 10th anniversary ipa,Stone 10th Anniversary IPA,Stone 10th Anniversary IPA,10.0,10.0,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_001768,50795,103941,stone 13th anniversary ale,Stone 13th Anniversary Ale,Stone 13th Anniversary Ale,9.5,9.5,0.0,American Strong Ale,American Strong Ale,equivalent,provisional
+BEER_001769,59369,123010,stone 14th anniversary emperial ipa,Stone 14th Anniversary Emperial IPA,Stone 14th Anniversary Emperial IPA,8.9,8.9,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_001770,25353,50440,stone 9th anniversary ale,Stone 9th Anniversary Ale,Stone 9th Anniversary Ale,7.8,7.8,0.0,American Strong Ale,American Strong Ale,equivalent,provisional
+BEER_001772,6301,16965,stone levitation ale,Stone Levitation Ale,Stone Levitation Ale,4.4,4.4,0.0,American Amber / Red Ale,Amber Ale,compatible,provisional
+BEER_001773,87,420,stone pale ale,Stone Pale Ale,Stone Pale Ale,5.4,5.4,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001775,4083,14709,stone ruination ipa,Stone Ruination IPA,Stone Ruination IPA,7.7,7.7,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_001776,90,421,stone smoked porter,Stone Smoked Porter,Stone Smoked Porter,5.9,5.9,0.0,American Porter,Porter,compatible,provisional
+BEER_001780,1550,2232,stoudts american pale ale,Stoudts American Pale Ale,Stoudts American Pale Ale,5.0,5.0,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001802,751,172,sweetwater 420 extra pale ale,Sweetwater 420 Extra Pale Ale,Sweetwater 420 Extra Pale Ale,5.4,5.2,0.2000000000000001,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001803,1971,175,sweetwater blue,Sweetwater Blue,Sweetwater Blue,4.9,4.8,0.1000000000000005,Fruit / Vegetable Beer,Fruit Beer,compatible,provisional
+BEER_001805,1494,174,sweetwater exodus porter,Sweetwater Exodus Porter,Sweetwater Exodus Porter,5.9,6.2,0.2999999999999998,American Porter,Porter,compatible,provisional
+BEER_001807,4162,10571,sweetwater georgia brown,Sweetwater Georgia Brown,Sweetwater Georgia Brown,5.1,5.4,0.3000000000000007,English Brown Ale,Brown Ale,compatible,provisional
+BEER_001808,23458,45621,sweetwater hummer,Sweetwater Hummer,Sweetwater Hummer,5.1,5.1,0.0,Witbier,Belgian White (Witbier),equivalent,provisional
+BEER_001809,1493,177,sweetwater ipa,Sweetwater IPA,Sweetwater IPA,6.3,6.4,0.1000000000000005,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001840,5487,17988,terminal gravity ipa,Terminal Gravity IPA,Terminal Gravity IPA,6.9,6.9,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001842,5948,16690,terrapin rye pale ale,Terrapin Rye Pale Ale,Terrapin Rye Pale Ale,5.3,5.3,0.0,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001843,22042,46706,terrapin rye squared,Terrapin Rye Squared,Terrapin Rye Squared,8.5,8.5,0.0,American Double / Imperial IPA,Imperial/Double IPA,equivalent,provisional
+BEER_001854,2185,11003,thomas hooker american pale ale,Thomas Hooker American Pale Ale,Thomas Hooker American Pale Ale,5.4,5.2,0.2000000000000001,American Pale Ale (APA),American Pale Ale,equivalent,provisional
+BEER_001855,9801,25538,thomas hooker blonde ale,Thomas Hooker Blonde Ale,Thomas Hooker Blonde Ale,5.1,4.8,0.2999999999999998,Cream Ale,Cream Ale,equivalent,provisional
+BEER_001856,20389,41740,thomas hooker hop meadow ipa,Thomas Hooker Hop Meadow IPA,Thomas Hooker Hop Meadow IPA,6.5,6.5,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001857,15589,28551,thomas hooker liberator doppelbock,Thomas Hooker Liberator Doppelbock,Thomas Hooker Liberator Doppelbock,8.0,8.0,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_001878,2176,3126,tiger beer,Tiger Beer,Tiger Beer,5.0,5.0,0.0,American Adjunct Lager,Pale Lager,compatible,provisional
+BEER_001907,12679,10503,trumer pils,Trumer Pils,Trumer Pils,4.8,4.9,0.1000000000000005,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_001912,932,7355,tucher bajuvator doppelbock,Tucher Bajuvator Doppelbock,Tucher Bajuvator Doppelbock,7.2,7.2,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_001913,370,3799,tucher dunkles hefe weizen,Tucher Dunkles Hefe Weizen,Tucher Dunkles Hefe Weizen,5.35,5.3,0.0499999999999998,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_001914,371,3797,tucher helles hefe weizen,Tucher Helles Hefe Weizen,Tucher Helles Hefe Weizen,5.35,5.3,0.0499999999999998,Hefeweizen,German Hefeweizen,equivalent,provisional
+BEER_001923,1093,1502,two hearted ale,Two Hearted Ale,Two Hearted Ale,7.0,7.0,0.0,American IPA,India Pale Ale (IPA),equivalent,provisional
+BEER_001961,1611,5311,warsteiner premium dunkel,Warsteiner Premium Dunkel,Warsteiner Premium Dunkel,4.9,4.9,0.0,Munich Dunkel Lager,Dunkel,compatible,provisional
+BEER_001965,935,1417,warsteiner premium verum,Warsteiner Premium Verum,Warsteiner Premium Verum,4.8,4.8,0.0,German Pilsener,Classic German Pilsener,equivalent,provisional
+BEER_001967,1683,11768,wasatch polygamy porter,Wasatch Polygamy Porter,Wasatch Polygamy Porter,4.0,4.0,0.0,American Porter,Porter,compatible,provisional
+BEER_001972,1854,11363,watou tripel,Watou Tripel,Watou Tripel,7.5,7.5,0.0,Tripel,Abbey Tripel,equivalent,provisional
+BEER_001979,6861,7679,weihenstephaner festbier,Weihenstephaner Festbier,Weihenstephaner Festbier,5.8,5.8,0.0,Märzen / Oktoberfest,Oktoberfest/Mrzen,equivalent,provisional
+BEER_001980,808,4583,weihenstephaner hefeweissbier dunkel,Weihenstephaner Hefeweissbier Dunkel,Weihenstephaner Hefeweissbier Dunkel,5.3,5.3,0.0,Dunkelweizen,Dunkelweizen,equivalent,provisional
+BEER_001982,779,7823,weihenstephaner korbinian,Weihenstephaner Korbinian,Weihenstephaner Korbinian,7.4,7.4,0.0,Doppelbock,Doppelbock,equivalent,provisional
+BEER_001989,4920,4024,weltenburger kloster barock dunkel,Weltenburger Kloster Barock Dunkel,Weltenburger Kloster Barock Dunkel,4.7,4.7,0.0,Munich Dunkel Lager,Dunkel,compatible,provisional
+BEER_002063,2477,9315,wittekerke,Wittekerke,Wittekerke,5.0,5.0,0.0,Witbier,Belgian White (Witbier),equivalent,provisional

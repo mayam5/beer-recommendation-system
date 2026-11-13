@@ -1,0 +1,25 @@
+{
+  "evaluation": "leave-one-out; no Recall/NDCG in supplied notebook",
+  "common_beers": 2095,
+  "selected_beers": 233,
+  "minimum_common_raters": 5,
+  "training_users": 14591,
+  "evaluation_users": 3664,
+  "test_ratings": 140663,
+  "K": [
+    2,
+    3,
+    5
+  ],
+  "similarity": "pairwise common finite raters only",
+  "prediction": "positive-similarity weighted raw-rating mean; clip [1,5]; no neighbors => NaN",
+  "errors": "computed on finite predictions; Coverage reported separately",
+  "selection": "exact max(nx.find_cliques(graph), key=len), same as supplied notebook",
+  "seconds": 39.64,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "networkx": "3.7"
+  }
+}
