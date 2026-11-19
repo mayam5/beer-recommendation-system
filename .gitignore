@@ -16,6 +16,8 @@ data/processed/**
 !data/processed/**/
 !data/processed/**/.gitkeep
 
+data/final_data/train/beeradvocate_reviews.parquet
+
 # Jupyter
 .ipynb_checkpoints/
 
