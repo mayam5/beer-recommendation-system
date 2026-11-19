@@ -7,9 +7,6 @@ venv/
 
 # Datasets
 # Ignore data files, but keep directory structure
-data/final_data/**
-!data/final_data/**/
-!data/final_data/**/.gitkeep
 
 data/raw/**
 !data/raw/**/
@@ -18,8 +15,6 @@ data/raw/**
 data/processed/**
 !data/processed/**/
 !data/processed/**/.gitkeep
-
-# Model outputs and results
 
 # Jupyter
 .ipynb_checkpoints/
